@@ -6,7 +6,7 @@
 void drawCircle(int h, int k, int r)
 {
     int x = 0, y = r;
-    int d = 3 - 2 * r;
+    int d = 3 - 2 * r; 
 
     while (x <= y)
     {

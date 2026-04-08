@@ -1,45 +1,31 @@
-#include <graphics.h>
-#include <conio.h>
+#include<graphics.h>
+#include<conio.h>
 
-int main() {
+int main()
+{
     int gd = DETECT, gm;
-    initgraph(&gd, &gm, "");
+    initgraph(&gd,&gm,"");
 
-    // Background (optional white)
-    setbkcolor(WHITE);
-    cleardevice();
+    setcolor(WHITE);
+    setlinestyle(SOLID_LINE,0,5);
 
-    setcolor(BLACK);
-    setfillstyle(SOLID_FILL, BLACK);
+    // microphone head (ellipse)
+    ellipse(300,180,0,360,50,80);
 
-    // Top oval (microphone head)
-    fillellipse(250, 150, 60, 70);
+    // mic inner lines
+    line(270,160,330,160);
+    line(270,180,330,180);
+    line(270,200,330,200);
 
-    // Bottom oval (slightly overlapping)
-    fillellipse(250, 220, 60, 70);
+    // holder curve
+    arc(300,230,200,340,70);
 
-    // Middle cut (white rectangle)
-    setfillstyle(SOLID_FILL, WHITE);
-    bar(190, 180, 310, 200);
+    // stand
+    line(300,300,300,360);
 
-    // Side vertical rounded bars
-    setfillstyle(SOLID_FILL, BLACK);
-    fillellipse(160, 230, 10, 50);
-    fillellipse(340, 230, 10, 50);
-
-    // Bottom U-shape arc
-    setcolor(BLACK);
-    setlinestyle(SOLID_LINE, 0, 3);
-    arc(250, 260, 200, 340, 120);
-
-    // Stand line
-    line(250, 340, 250, 390);
-
-    // Base
-    setfillstyle(SOLID_FILL, BLACK);
-    bar(220, 390, 280, 410);
+    // base
+    line(260,360,340,360);
 
     getch();
     closegraph();
-    return 0;
 }

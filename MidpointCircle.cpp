@@ -1,41 +1,96 @@
+// #include <graphics.h>
+// #include <stdio.h>
+// #include <conio.h>
+// #include <dos.h>   // for delay()
+
+// int main()
+// {
+//     int x = 0, y, r = 120, p;
+//     int h = 400, k = 250;
+
+//     int gd = DETECT, gm;
+//     initgraph(&gd, &gm, ""); 
+
+//     y = r; 
+//     p = 1 - r;
+
+//     while(x <= y)
+//     {
+//         putpixel(x+h, y+k, 2);
+//         putpixel(y+h, x+k, 2);
+//         putpixel(-y+h, x+k, 3);
+//         putpixel(-x+h, y+k, 3);
+//         putpixel(-x+h, -y+k, 4);
+//         putpixel(-y+h, -x+k, 4);
+//         putpixel(y+h, -x+k, 5);
+//         putpixel(x+h, -y+k, 5);
+
+//         delay(20);   // animation speed
+
+//         x++;
+
+//         if(p < 0)
+//             p = p + 2*x + 1;
+//         else
+//         {
+//             y--;
+//             p = p + 2*(x - y) + 1;
+//         }
+//     }
+
+//     getch();
+//     closegraph();
+// }
+
 #include <graphics.h>
 #include <stdio.h>
 #include <conio.h>
-#include <dos.h>   // for delay()
+#include <dos.h>
 
-int main()
+// Midpoint Circle Function
+void drawCircle(int h, int k, int r)
 {
-    int x = 0, y, r = 120, p;
-    int h = 400, k = 250;
-
-    int gd = DETECT, gm;
-    initgraph(&gd, &gm, "");
-
-    y = r;
-    p = 1 - r;
+    int x = 0, y = r;
+    int p = 1 - r;
 
     while(x <= y)
     {
-        putpixel(x+h, y+k, 2);
-        putpixel(y+h, x+k, 2);
-        putpixel(-y+h, x+k, 3);
-        putpixel(-x+h, y+k, 3);
-        putpixel(-x+h, -y+k, 4);
-        putpixel(-y+h, -x+k, 4);
-        putpixel(y+h, -x+k, 5);
-        putpixel(x+h, -y+k, 5);
+        putpixel(x + h, y + k, 2);
+        putpixel(y + h, x + k, 2);
+        putpixel(-y + h, x + k, 3);
+        putpixel(-x + h, y + k, 3);
+        putpixel(-x + h, -y + k, 4);
+        putpixel(-y + h, -x + k, 4);
+        putpixel(y + h, -x + k, 5);
+        putpixel(x + h, -y + k, 5);
 
-        delay(20);   // animation speed
-
-        x++;
-
-        if(p < 0)
+        if (p < 0)
+        {
             p = p + 2*x + 1;
+        }
         else
         {
             y--;
             p = p + 2*(x - y) + 1;
         }
+
+        x++;
+    }
+}
+
+int main()
+{
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "");
+
+    int h = 400, k = 250;
+
+    // Animation: growing circle
+    for(int r = 10; r <= 150; r += 5)
+    {
+        cleardevice();        // clear screen
+        drawCircle(h, k, r);  // draw circle
+        delay(50);            // control speed
     }
 
     getch();
